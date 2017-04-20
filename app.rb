@@ -2,16 +2,19 @@
 # frozen_string_literal: true
 require 'rubygems'
 require 'bundler'
-
+require "sinatra"
+set :bind, '0.0.0.0'
 Bundler.require
 
 require 'English'
+
 
 get '/' do
   Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(IO.read('README.md'))
 end
 
-tmpfile_path ||= File.join('tmp', "ibotta_#{SecureRandom.urlsafe_base64}") # Changes on application restart
+tmpfile_path ||= File.join('/tmp', "ibotta_#{SecureRandom.urlsafe_base64}") # Changes on application restart
+puts #{tmpfile_path}
 get '/tmpfile' do
   File.open(tmpfile_path, 'a') { |f| f.write("#{Time.now}\n") }
   body = "#Temporary File (#{tmpfile_path.gsub('_', '\_')})\n"
