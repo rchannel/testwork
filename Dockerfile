@@ -16,4 +16,3 @@ ENTRYPOINT service mysql start && /bin/bash
 ENV PORT 4567
 EXPOSE 4567
 ENTRYPOINT  ruby app.rb && /bin/bash
-#CMD ['ruby'. 'app.rb']
