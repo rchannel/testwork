@@ -42,3 +42,4 @@ get '/mysql' do
   end.join("\n")
   Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(body)
 end
+run Sinatra::Application

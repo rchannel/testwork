@@ -15,4 +15,4 @@ RUN bundle install
 ENTRYPOINT service mysql start && /bin/bash
 ENV PORT 4567
 EXPOSE 4567
-CMD service mysql start && ruby app.rb && /bin/bash
+CMD service mysql start && ruby app.rb && /bin/bash:

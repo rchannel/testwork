@@ -1,0 +1,23 @@
+FROM phusion/baseimage:0.9.17
+#FROM ubuntu
+
+
+MAINTAINER Rick Channel <rick.channel@gmail.com
+
+RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold" 
+RUN apt-get install -y build-essential curl git libmysqlclient-dev
+RUN curl -sSL https://rvm.io/mpapis.asc
+RUN curl -sSL https://get.rvm.io | bash -s stable
+RUN echo 'source /usr/local/rvm/scripts/rvm' >> /etc/bash.bashrc
+RUN /bin/bash -l -c 'rvm install  default 2.3.1'
+RUN /bin/bash -l -c '/etc/profile.d/rvm.sh'
+RUN /bin/bash -l -c 'gem install bundler'
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
+RUN mkdir /myapp
+WORKDIR /myapp
+ADD . /myapp
+ADD Gemfile /myapp/Gemfile
+ADD Gemfile.lock /myapp/Gemfile.lock
+#ENTRYPOINT service mysql start
+ENTRYPOINT service mysql start && bundle install
+CMD ["ruby", "app.rb", "/bin/bash"]
