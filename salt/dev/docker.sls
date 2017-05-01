@@ -1,6 +1,5 @@
 docker:
   pkg.installed:
-    - from: docker-ce-edge
     - pkgs:
       - docker
 
