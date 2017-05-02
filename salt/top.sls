@@ -8,3 +8,7 @@ base:
     - match: grain
     - docker
     - docker.worker.join
+
+  'node_function:bundlerboss':
+    - match: grain
+    - bundler
