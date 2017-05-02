@@ -1,12 +1,9 @@
 include:
   - docker
   - docker.mine
-  - docker.manager.drain
 
 init new swarm cluster:
   cmd.run:
-    - name: 'docker swarm init --advertise-addr '
+    - name: 'docker swarm init'
     - require:
-      - pkg: docker-engine
-    - require_in:
-      - cmd: drain manager
+      - pkg: docker

@@ -12,7 +12,8 @@ ADD . /myapp
 ADD Gemfile /myapp/Gemfile
 ADD Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
-ENTRYPOINT service mysql start && /bin/bash
+#ENTRYPOINT service mysql start && /bin/bash
 ENV PORT 4567
 EXPOSE 4567
-CMD service mysql start && ruby app.rb && /bin/bash:
+ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD service mysql start && ruby app.rb && 'tail -f /dev/null'
