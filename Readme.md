@@ -57,6 +57,8 @@ Remove a swarm
 #Build docker image
 salt-call state.apply docker.buildit
   This would be automated with git hooks or jenkins.
+
+Did this three ways, build from scratch on ubuntu docker image(Dockerfile.ubuntu.image), build on centos docker or otherwise(Salt only), and finally the way we all would do it using a ruby image.
   
 #Real environment would have automation from a git server with pull/push hooks.
 #Build a salt module for swarm creation management.
